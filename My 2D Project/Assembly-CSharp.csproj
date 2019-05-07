@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Block\BlockInfo.cs" />
+     <Compile Include="Assets\Scripts\CountGuiText.cs" />
      <Compile Include="Assets\Scripts\DrawLineTest.cs" />
      <Compile Include="Assets\Scripts\LineCreator.cs" />
      <Compile Include="Assets\Scripts\LineDrawer.cs" />

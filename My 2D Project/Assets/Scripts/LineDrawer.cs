@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
 {
+    public float Length = 0, Count_int = 0;
+    public float total_Length = 0;
+    private Vector2 pre, cur;
+
     private LineRenderer line;
     private Rigidbody2D rigid;
     private PolygonCollider2D poly;
@@ -22,10 +26,39 @@ public class LineDrawer : MonoBehaviour
     {
         if (Input.GetMouseButton(0)) //Or use GetKey with key defined with mouse button
         {
-            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            line.positionCount++;
-            line.SetPosition(line.positionCount - 1, mousePosition - (Vector2)gameObject.transform.position);
-            colliderPoints.Add(mousePosition - (Vector2)gameObject.transform.position); // 콜라이더를 위한 배열
+            if (line.positionCount != 0)
+            {
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Length = Vector2.Distance(mousePosition, pre); // 길이를 구함
+                pre = mousePosition;
+
+                if (Length > 0.001f)
+                    if (LineCreator.Length >= 0)
+                    {
+                        line.positionCount++;
+                        line.SetPosition(line.positionCount - 1, mousePosition - (Vector2)gameObject.transform.position);
+                        colliderPoints.Add(mousePosition - (Vector2)gameObject.transform.position); // 콜라이더를 위한 배열
+
+                        total_Length += Length;
+                        Count_int += Length;
+                        if (Count_int >= 1) {
+                            LineCreator.Length -= 1;
+                            Count_int -= 1;
+                        }
+                        GameObject.Find("LineCreator").SendMessage("SetText");
+                    }
+            }
+            else // 첫번째로 딱 찍었을 때
+            {
+                if (LineCreator.Length > 0)
+                {
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    pre = mousePosition;
+                    line.positionCount++;
+                    line.SetPosition(line.positionCount - 1, mousePosition - (Vector2)gameObject.transform.position);
+                    colliderPoints.Add(mousePosition - (Vector2)gameObject.transform.position); // 콜라이더를 위한 배열
+                }
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -34,6 +67,7 @@ public class LineDrawer : MonoBehaviour
                 line.Simplify(simplifyTolerance);
             }
             rigid.WakeUp();
+            GameObject.Find("LineCreator").SendMessage("SetText");
             enabled = false; //Making this script stop
             addCollider();
         }
@@ -53,5 +87,12 @@ public class LineDrawer : MonoBehaviour
         }
 
         poly.SetPath(0, colliderPoints2.ToArray());
+    }
+    void OnBecameInvisible()
+    {
+        LineCreator.Count--;
+        LineCreator.Length += (int)total_Length;
+        GameObject.Find("LineCreator").SendMessage("SetText");
+        Destroy(gameObject);
     }
 }
