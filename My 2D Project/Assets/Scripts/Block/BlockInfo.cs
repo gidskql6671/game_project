@@ -9,11 +9,26 @@ public class BlockInfo : MonoBehaviour {
         int child_count = gameObject.transform.childCount;
         for(int i = 0; i < child_count; i++)
         {
-            GameObject child = gameObject.transform.GetChild(i).gameObject;
+            GameObject child = gameObject.transform.GetChild(i).gameObject; // 바닥들
+
             BoxCollider2D col = child.AddComponent<BoxCollider2D>();
+            if (child.GetComponent<SpriteRenderer>().sprite.name == "Basic+Sprites_0")
+            { // 왼쪽 끝블록
+                col.size = new Vector2(1.4f, 1.6f);
+                col.offset = new Vector2(0.1f, 0);
+            }
+            else if (child.GetComponent<SpriteRenderer>().sprite.name == "Basic+Sprites_2")
+            { // 오른쪽 끝블록
+                col.size = new Vector2(1.4f, 1.6f);
+                col.offset = new Vector2(-0.1f, 0);
+            }
+            else // 중간 블록
+                col.size = gameObject.transform.localScale * 1.6f;
+
             Rigidbody2D rigid = child.AddComponent<Rigidbody2D>();
             rigid.bodyType = RigidbodyType2D.Static;
-            col.size = gameObject.transform.localScale * 1.6f;
+
+            child.tag = "floor";
         }
 
     }
