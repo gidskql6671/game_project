@@ -4,7 +4,7 @@ C:/Users/gidsk/Desktop/sample.apk
 SceneListBegin?
 Assets/Scenes/GameScene.unity
 SceneListEnd?
-f0705cd96ca590eb2631fbc55f37dff3 Assembly-CSharp.dll:.PlayerMove
+59691b2c2b316318ddd6c2e5e85d3c4c Assembly-CSharp.dll:.PlayerMove
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 13bdb7c23815c33a33b37b0ba8dd39be UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -150,3 +150,5 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Control_Manager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.GameManager

@@ -41,11 +41,14 @@ public class TmpLine : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) // 콜라이더에 접촉할 때마다 count++
     {
-        count++;
+        Debug.Log(other.name + "    " + count);
+        if (other.transform.tag != "End")
+            count++;
     }
     void OnTriggerExit2D(Collider2D other) // 콜라이더에서 빠져 나올 때마다 count--
     {
-        count--;
+        if (other.transform.tag != "End")
+            count--;
         if (count <= 0) // count <= 0 이면, 충돌하지 않는 상태
         {
             gameObject.transform.parent.GetComponent<LineDrawer>().iscol = false;

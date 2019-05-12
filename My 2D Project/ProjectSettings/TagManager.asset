@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - floor
+  - Start
+  - End
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
 
+    [HideInInspector] public bool isleft = false;
+    [HideInInspector] public bool isright = false;
+    [HideInInspector] public bool isjump = false;
+
     public float movePower = 5f;
     public float jumpPower = 6f;
 
     Rigidbody2D rigid;
-    BoxCollider2D col;
-
-    Vector3 movement;
+    
     bool island = false; // 땅에 있는가?
 
 	// Use this for initialization
@@ -18,35 +20,27 @@ public class PlayerMove : MonoBehaviour {
         rigid = gameObject.GetComponent<Rigidbody2D>();
 
         // 점프를 위한 콜라이더
-        col = gameObject.AddComponent<BoxCollider2D>();
+        BoxCollider2D col = gameObject.AddComponent<BoxCollider2D>();
         col.isTrigger = true;
         col.offset = new Vector2(0, -0.8f);
         col.size = new Vector2(0.3f, 0.1f);
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Jump") ) // 점프 버튼을 누를 때 실행
+		if (isjump) // 점프 버튼을 누를 때 실행
         {
             Jump();
         }
     }
     void FixedUpdate()
     {
-        Move();
+        if (isleft)
+            transform.position += Vector3.left * movePower * Time.deltaTime;
+        if (isright)
+            transform.position += Vector3.right * movePower * Time.deltaTime;
     }
-    void Move()
-    {
-        Vector3 moveVelocity = Vector3.zero;
-
-        if (Input.GetAxisRaw("Horizontal") < 0)
-            moveVelocity = Vector3.left;
-        else if (Input.GetAxisRaw("Horizontal") > 0)
-            moveVelocity = Vector3.right;
-
-        transform.position += moveVelocity * movePower * Time.deltaTime;
-    }
-    void Jump()
+    
+    public void Jump()
     {
         if (!island) // 점프 버튼을 누르지 않았다면 탈출
             return;
