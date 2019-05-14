@@ -11,7 +11,6 @@ public class TmpLine : MonoBehaviour
     private int count = 0;
     private float preLength, length;
 
-    // Use this for initialization
     void Start () {
         pre = gameObject.transform.parent.GetComponent<LineDrawer>().pre;
         line = gameObject.GetComponent<LineRenderer>();

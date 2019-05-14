@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Gomain.cs" />
      <Compile Include="Assets\Scripts\Block\BlockInfo.cs" />
      <Compile Include="Assets\Scripts\Control_Manager.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
@@ -61,6 +62,8 @@
      <Compile Include="Assets\Scripts\Line\TmpLine.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\Star.cs" />
+     <Compile Include="Assets\Scripts\UImanager.cs" />
+     <Compile Include="Assets\Startmanager.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>E:/Unityproject/My 2D Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

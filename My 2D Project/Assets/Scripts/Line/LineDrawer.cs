@@ -79,6 +79,7 @@ public class LineDrawer : MonoBehaviour
                 }
                 else // 다른 옵젝이랑 충돌이 있다면?
                 {
+                    Debug.Log(hit.collider.name);
                     if (line.positionCount != 0)
                     {
                         iscol = true;

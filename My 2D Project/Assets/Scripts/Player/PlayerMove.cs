@@ -22,8 +22,8 @@ public class PlayerMove : MonoBehaviour {
         // 점프를 위한 콜라이더
         BoxCollider2D col = gameObject.AddComponent<BoxCollider2D>();
         col.isTrigger = true;
-        col.offset = new Vector2(0, -0.8f);
-        col.size = new Vector2(0.3f, 0.1f);
+        col.offset = new Vector2(0, -0.8f) * GameManager.difsize;
+        col.size = new Vector2(0.3f, 0.1f) * GameManager.difsize;
 	}
 	
 	void Update () {

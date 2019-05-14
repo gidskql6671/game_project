@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;  // UI 터치를 막아주는 함수가 들어있당
 
 public class LineCreator : MonoBehaviour
 {
@@ -29,18 +30,21 @@ public class LineCreator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //Or use GetKeyDown with key defined with mouse button
+        if (EventSystem.current.IsPointerOverGameObject() == false) // UI위를 터치한 것이 아닐 때
         {
-            if (Count < 5 && Length > 0 && canDraw)
+            if (Input.GetMouseButtonDown(0)) //Or use GetKeyDown with key defined with mouse button
             {
-                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Instantiate(line, mousePosition, Quaternion.Euler(0.0f, 0.0f, 0.0f)); // 인스턴스 생성 (라인 객체 생성)
+                if (Count < 5 && Length > 0 && canDraw)
+                {
+                    mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Instantiate(line, mousePosition, Quaternion.Euler(0.0f, 0.0f, 0.0f)); // 인스턴스 생성 (라인 객체 생성)
 
-                Count++;
+                    Count++;
+                }
             }
+            Length = (Length > 100) ? 100 : Length;
+            SetText();
         }
-        Length = (Length > 100) ? 100 : Length;
-        SetText();
     }
     void SetText()
     { 
